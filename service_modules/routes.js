@@ -1,6 +1,9 @@
 let express = require('express')
 let controller = require('./Controller')
+
 let router = express.Router()
+
+
 /*------------Routes----------------*/
 
 router.route('/').get(controller.home)
