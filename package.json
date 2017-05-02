@@ -19,6 +19,7 @@
   "homepage": "https://github.com/SamPiy93/backend-service-nodejs#readme",
   "dependencies": {
     "express": "^4.15.2",
+    "mysql": "^2.13.0",
     "nodeman": "^1.1.2"
   }
 }

@@ -1,14 +1,12 @@
-let express = require('express');
-let app = express();
+let express = require('express')
+let app = express()
+var routes = require('./routes.js')
 
-app.get('/', function(req, res){
-	console.log("Index");
-	res.end();
-})
+app.use('/trippinceylon', routes)
 
-var server = app.listen(8000, function(){
-	var host = server.address().address
+/*------------server--------------*/
+var server = app.listen(3000, function(){
+	var host = 'localhost'//server.address().address
 	var port = server.address().port
-
-	console.log("Server listening at http://%s:%s", host, port);
+	console.log("Server listening at http://%s:%s", host, port)
 })
