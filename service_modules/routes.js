@@ -6,7 +6,7 @@ let router = express.Router()
 
 /*------------Routes----------------*/
 
-router.route('/').get(controller.home)
+router.route('/v1').get(controller.home)
 
 router.route('/v1/users').get(controller.users)
 
