@@ -44,22 +44,6 @@ function closeConnection(connection) {
 }
 
 module.exports = {
-    home : function(req, res){
-        console.log("Server running")
-        res.send("Server is up!")
-    },
-    users : function (req, res) {
-        getUsers(connection, function (err, content) {
-            if (err){
-                console.log("error occurred in response :",err)
-                res.send(err)
-            } else {
-                console.log("response sent!", content)
-                res.send(content)
-            }
-        })
-        console.log("Details retrieved successfully!")
-    },
     login : function (req, res) {
         authenticate(connection, req, res, function (err, content) {
             if(err){
@@ -73,9 +57,7 @@ module.exports = {
     },
     googleAuth : function(req, res){
         var url = getAuthURL();
-        res.send(`
-            <h1>Authentication using google oAuth</h1> <a href="https://accounts.google.com/o/oauth2/auth?access_type=offline&scope=https://www.googleapis.com/auth/plus.me&response_type=code&client_id=449019875476-n054hpa8dgtpn1dg56b6rktlecvvbdh6.apps.googleusercontent.com&redirect_uri=http://localhost:3000/trippinceylon/v1/auth/google/callback">Login</a>
-        `)
+        res.redirect(url);
     },
     googleCallback : function (req, res){
         let oauth2Client = getOAuthClient()
