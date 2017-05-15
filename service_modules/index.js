@@ -1,8 +1,10 @@
 "use strict"
+let cors = require('cors')
 let express = require('express')
 let app = module.exports = express()
 let routes = require('./routes.js')
 
+app.use(cors())
 app.use('/trippinceylon', routes)
 
 /*------------server--------------*/
