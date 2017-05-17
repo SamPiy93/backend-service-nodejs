@@ -1,5 +1,5 @@
 "use strict"
-let cors = require('cors')
+let cors = require('cors')			
 let express = require('express')
 let app = module.exports = express()
 let routes = require('./routes.js')

@@ -1,7 +1,7 @@
 "use strict"
 let express = require('express')
 let controller = require('./Controller')
-let latlong = require('./ORM/latLong').latlong_var
+let latlong = require('./ORM/latLong')
 let router = express.Router()
 
 
@@ -9,12 +9,11 @@ let router = express.Router()
 router.route('/v1/auth/google').get(controller.googleAuth)
 router.route('/v1/auth/google/callback').get(controller.googleCallback)
 router.route('/v1/fetch/user').get(controller.getUserDetails)
+
+router.route('v1/auth/provider/:id').get(controller.getUserDetails)
+
 // router.route('/v1/login/:username/:password').post(controller.login)
 // router.route('/v1/fetch/locations').get(latlong.fetchAllLocations)
-router.get('/v1/fetch/locations', function(req, res) {
-    latlong.findAll({}).then(function(todos) {
-        res.json(todos);
-    });
-});
-
+router.get('/v1/fetch/locations', latlong.fetchAllLocations)
+router.get('/v1/add/locations/:lattitude/:longitude/:loc', latlong.addLocations)
 module.exports = router

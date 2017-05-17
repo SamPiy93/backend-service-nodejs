@@ -1,10 +1,11 @@
 "use strict"
 let Sequelize = require('sequelize')
 let DataTypes = require('sequelize/lib/data-types')
+let SequelizeToJson = require('sequelize-to-json')
 // let connection = new Sequelize('mysql://root:sameera@localhost/TEST_DB');
 
-let connection = new Sequelize("TEST_DB", "root", "sameera", {
-    host: "10.101.5.49",
+let connection = new Sequelize("test_db", "root", "sameera", {
+    host: "localhost",
     dialect: "mysql",
     logging: function () {},
     pool: {
@@ -13,7 +14,7 @@ let connection = new Sequelize("TEST_DB", "root", "sameera", {
         idle: 10000
     },
     dialectOptions: {
-        socketPath: "/var/mysql/mysql.sock"
+        socketPath: "/var/run/mysqld/mysqld.sock"
     },
     define: {
         paranoid: true
@@ -56,15 +57,24 @@ let latlong = connection.define('latlong_details_tables', {
     }
 });
 
-exports.latlong_var = latlong
+// exports.latlong_var = latlong
 
-// module.exports = {
-//     fetchAllLocations : function (req, res) {
-//         latlong.findAll({}).then(function (response) {
-//            res.json(response)
-//         });
-//     }
-// }
+module.exports = {
+    fetchAllLocations : function (req, res) {
+        latlong.findAll({where: { id: 1 }}).then(function(data){
+            res.json(data[0].dataValues)
+        })
+    },
+    addLocations : function (req, res) {
+        latlong.build({
+            lat: req.params.lattitude,
+            lon: req.params.longitude,
+            location: req.params.loc
+        }).save().then(function(response){
+            res.json(response[0].dataValues)
+        })
+    }
+}
 
 // let newRecord = latlong.build({
 //     lat: 79.906340,
