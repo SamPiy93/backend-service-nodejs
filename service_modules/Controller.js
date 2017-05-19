@@ -107,3 +107,23 @@ function authenticate(connection, req, res, callback) {
     //     }
     // })
 }
+
+
+
+
+
+
+// googleCallback : function (req, res){
+//         let oauth2Client = getOAuthClient()
+//         let session = req.session
+//         let authCode = req.query.code
+//         oauth2Client.getToken(authCode, function (err, tokens) {
+//             if (!err){
+//                 oauth2Client.setCredentials(tokens)
+//                 session["token"] = tokens
+//                 res.send(session["token"])
+//             }else{
+//                 res.send(err);
+//             }
+//         })
+//     },

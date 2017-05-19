@@ -12,8 +12,8 @@ let connection = new Sequelize("test_db", "root", "sameera", {
         idle: 10000
     },
     dialectOptions: {
-        // socketPath: "/var/run/mysqld/mysqld.sock"
-        socketPath: "/var/mysql/mysql.sock"
+        socketPath: "/var/run/mysqld/mysqld.sock"
+        // socketPath: "/var/mysql/mysql.sock"
     },
     define: {
         paranoid: true
@@ -71,13 +71,13 @@ module.exports = {
         })
     },
     addLocations : function (req, res) {
-        res.send(req.params.lattitude)
         latlong.build({
             lat: req.params.lattitude,
             lon: req.params.longitude,
             location: req.params.loc
         }).save().then(function(response){
             console.log(response)
+            res.redirect('/trippinceylon')
         })
     }
 }

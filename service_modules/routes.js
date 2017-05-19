@@ -6,6 +6,9 @@ let router = express.Router()
 
 
 /*------------Routes----------------*/
+router.route('/').get(function(req, res){
+    res.send('TRIPPIN-CEYLON');
+})
 router.route('/v1/auth/google').get(controller.googleAuth)
 router.route('/v1/auth/google/callback').get(controller.googleCallback)
 router.route('/v1/fetch/user').get(controller.getUserDetails)
