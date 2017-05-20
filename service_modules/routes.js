@@ -1,7 +1,7 @@
 "use strict"
 let express = require('express')
 var passport = require('passport')
-let controller = require('./Controller')
+let googleORM = require('./ORM/googleUser')
 let latlong = require('./ORM/latLong')
 let user = require('./ORM/User')
 let facebook = require('./facebookAuth/facebookAuth')
@@ -12,11 +12,11 @@ let router = express.Router()
 router.route('/').get(function(req, res){
     res.send('TRIPPIN-CEYLON');
 })
-router.route('/v1/auth/google').get(controller.googleAuth)
-router.route('/v1/auth/google/callback').get(controller.googleCallback)
-router.route('/v1/fetch/user').get(controller.getUserDetails)
+router.route('/v1/auth/google').get(googleORM.googleAuth)
+router.route('/v1/auth/google/callback').get(googleORM.googleCallback)
+router.route('/v1/fetch/user').get(googleORM.getUserDetails)
 
-router.route('v1/auth/provider/:id').get(controller.getUserDetails)
+router.route('v1/auth/provider/:id').get(googleORM.getUserDetails)
 
 router.route('/v1/auth/local').post(user.login)
 router.route('/v1/fetch/users').get(user.fetchAllUsers)
