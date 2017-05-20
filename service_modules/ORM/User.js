@@ -2,20 +2,14 @@
 let con = require('./connection')
 
 let user = con.connection.define('users', {
-    user_id: {
-        type: con.datatypes.STRING,
-        allowNull: false
-    },
+    // user_id: {
+    //     type: con.datatypes.STRING,
+    //     allowNull: false
+    // },
     email: {
         type: con.datatypes.STRING
     },
-    first_name: {
-        type: con.datatypes.STRING
-    },
-    last_name: {
-        type: con.datatypes.STRING
-    },
-    username: {
+    full_name: {
         type: con.datatypes.STRING
     },
     password: {
@@ -23,54 +17,42 @@ let user = con.connection.define('users', {
     }
 }, {
     getterMethods : {
-        user_id : function () {
-            return this.user_id
-        },
+        // user_id : function () {
+        //     return this.user_id
+        // },
         email : function () {
             return this.email
         },
-        first_name : function () {
-            return this.first_name
-        },
-        last_name : function () {
-            return this.last_name
-        },
-        username : function () {
-            return this.username
+        full_name : function () {
+            return this.full_name
         },
         password : function () {
             return this.password
         }        
     },
     setterMethods : {
-        user_id : function (value) {
-            this.setDataValue('user_id', value)
-        },
+        // user_id : function (value) {
+        //     this.setDataValue('user_id', value)
+        // },
         email : function (value) {
             this.setDataValue('email', value)
         },
-        first_name : function (value) {
-            this.setDataValue('first_name', value)
-        },
-        last_name : function (value) {
-            this.setDataValue('last_name', value)
-        },
-        username : function (value) {
-            this.setDataValue('username', value)
+        full_name : function (value) {
+            this.setDataValue('full_name', value)
         },
         password : function (value) {
             this.setDataValue('password', value)
         }
     }
 });
-// user.sync();
+user.sync();
 // exports.latlong_var = latlong
 
 module.exports = {
     login : function (req, res) {
         user.findAll({
             where : {
-                username : req.body.username, 
+                email : req.body.email, 
                 password : req.body.password
             }
         }).then(function(data){
@@ -92,11 +74,8 @@ module.exports = {
     },
     addUsers : function (req, res) {
         user.build({
-            user_id: req.body.user_id,
             email: req.body.email,
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            username: req.body.username,
+            full_name: req.body.full_name,
             password: req.body.password
         }).save().then(function(response){
             console.log(response)
