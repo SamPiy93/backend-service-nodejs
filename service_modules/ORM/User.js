@@ -1,5 +1,6 @@
 "use strict"
 let con = require('./connection')
+let fs = require('fs')
 
 let user = con.connection.define('users', {
     // user_id: {
@@ -15,8 +16,8 @@ let user = con.connection.define('users', {
     password: {
         type: con.datatypes.STRING
     },
-    image: {
-        type: con.datatypes.BLOB
+    user_image: {
+        type: con.datatypes.TEXT
     }
 }, {
     getterMethods : {
@@ -32,8 +33,8 @@ let user = con.connection.define('users', {
         password : function () {
             return this.password
         },
-        image : function () {
-            return this.image
+        user_image : function () {
+            return this.user_image
         }        
     },
     setterMethods : {
@@ -49,8 +50,8 @@ let user = con.connection.define('users', {
         password : function (value) {
             this.setDataValue('password', value)
         },
-        image : function (value) {
-            this.setDataValue('image', value)
+        user_image : function (value) {
+            this.setDataValue('user_image', value)
         }
     }
 });
@@ -85,7 +86,8 @@ module.exports = {
         user.build({
             email: req.body.email,
             full_name: req.body.full_name,
-            password: req.body.password
+            password: req.body.password,
+            user_image: req.body.user_image
         }).save().then(function(response){
             res.json(response.dataValues)
             // let arr = []
