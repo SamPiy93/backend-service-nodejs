@@ -90,11 +90,6 @@ module.exports = {
             user_image: req.body.user_image
         }).save().then(function(response){
             res.json(response.dataValues)
-            // let arr = []
-            // for (let records in response){
-            //     arr.push(response[records].dataValues)
-            // }
-            // res.json(arr)
         })
     },
     user : user

@@ -19,8 +19,14 @@ router.route('/v1/signup/user').post(user.addUsers)
 router.route('/v1/auth/local').post(user.login) 
 
 // router.route('/v1/fetch/users').get(user.fetchAllUsers)
-router.get('/v1/fetch/locations', latlong.fetchAllLocations)
-router.get('/v1/add/locations/:lattitude/:longitude/:loc', latlong.addLocations)
+// fetch all locations
+router.route('/v1/fetch/locations').get(latlong.fetchAllLocations)
+
+//fetch locaton by location id and lat+long
+router.route('/v1/fetch/location/:id/:lat/:lon').get(latlong.fetchLocationById)
+
+//add locations 
+router.route('/v1/add/locations/:lattitude/:longitude/:loc_image/:loc_name/:loc_district').get(latlong.addLocations)
 
 
 
