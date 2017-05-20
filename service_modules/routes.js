@@ -16,7 +16,7 @@ router.route('/').get(function(req, res){
 router.route('/v1/signup/user').post(user.addUsers)
 
 //login
-router.route('/v1/auth/local').post(user.login)
+router.route('/v1/auth/local').post(user.login) 
 
 // router.route('/v1/fetch/users').get(user.fetchAllUsers)
 router.get('/v1/fetch/locations', latlong.fetchAllLocations)

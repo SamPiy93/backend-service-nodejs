@@ -14,6 +14,9 @@ let user = con.connection.define('users', {
     },
     password: {
         type: con.datatypes.STRING
+    },
+    image: {
+        type: con.datatypes.BLOB
     }
 }, {
     getterMethods : {
@@ -28,6 +31,9 @@ let user = con.connection.define('users', {
         },
         password : function () {
             return this.password
+        },
+        image : function () {
+            return this.image
         }        
     },
     setterMethods : {
@@ -42,10 +48,13 @@ let user = con.connection.define('users', {
         },
         password : function (value) {
             this.setDataValue('password', value)
+        },
+        image : function (value) {
+            this.setDataValue('image', value)
         }
     }
 });
-user.sync();
+// user.sync({force:true, logging:console.log});
 // exports.latlong_var = latlong
 
 module.exports = {
@@ -78,8 +87,12 @@ module.exports = {
             full_name: req.body.full_name,
             password: req.body.password
         }).save().then(function(response){
-            console.log(response)
-            res.redirect('/trippinceylon')
+            res.json(response.dataValues)
+            // let arr = []
+            // for (let records in response){
+            //     arr.push(response[records].dataValues)
+            // }
+            // res.json(arr)
         })
     },
     user : user
