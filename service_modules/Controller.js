@@ -19,17 +19,7 @@ app.use(Session({
 
 
 module.exports = {
-    login : function (req, res) {
-        // authenticate(connection, req, res, function (err, content) {
-        //     if(err){
-        //         console.log("Invalid user!")
-        //         res.send(err)
-        //     } else {
-        //         console.log("User authenticated successfully!")
-        //         res.send(content)
-        //     }
-        // })
-    },
+    
     googleAuth : function(req, res){
         var url = getAuthURL();
         res.redirect(url);
@@ -81,49 +71,3 @@ function getAuthURL() {
 
 	return url
 }
-function getUsers(connection, callback) {
-    // connection.query('SELECT * FROM _USERS u WHERE u._username = "sameera"', function (err, rows) {
-    //     if (!err){
-    //         callback(null, rows)
-    //     } else {
-    //         callback(err, null)
-    //     }
-    // })
-}
-
-function authenticate(connection, req, res, callback) {
-    // let username = mysql.escape(req.params.username)
-    // let password = mysql.escape(req.params.password)
-    //
-    // connection.query('SELECT * FROM _USERS u WHERE u._username = '+username+' and u._pass = '+password, function (err, rows) {
-    //     if (!err){
-    //         if (rows != "") {
-    //             callback(null, rows)
-    //         } else {
-    //             callback("{'error':'user invalid'}", null)
-    //         }
-    //     } else {
-    //         callback(err, null)
-    //     }
-    // })
-}
-
-
-
-
-
-
-// googleCallback : function (req, res){
-//         let oauth2Client = getOAuthClient()
-//         let session = req.session
-//         let authCode = req.query.code
-//         oauth2Client.getToken(authCode, function (err, tokens) {
-//             if (!err){
-//                 oauth2Client.setCredentials(tokens)
-//                 session["token"] = tokens
-//                 res.send(session["token"])
-//             }else{
-//                 res.send(err);
-//             }
-//         })
-//     },

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/SamPiy93/backend-service-nodejs#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
@@ -26,6 +27,8 @@
     "nodeman": "^1.1.2",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-facebook-token": "^3.3.0",
     "passport-google-oauth": "^1.0.0",
     "sequelize": "^3.30.4",
     "sequelize-to-json": "^0.10.2"

@@ -1,35 +1,16 @@
 "use strict"
-let Sequelize = require('sequelize')
-let DataTypes = require('sequelize/lib/data-types')
+let con = require('./connection')
 
-let connection = new Sequelize("test_db", "root", "sameera", {
-    host: "localhost",
-    dialect: "mysql",
-    logging: function () {},
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 10000
-    },
-    dialectOptions: {
-        socketPath: "/var/run/mysqld/mysqld.sock"
-        // socketPath: "/var/mysql/mysql.sock"
-    },
-    define: {
-        paranoid: true
-    }
-});
-
-let latlong = connection.define('latlong_details_tables', {
+let latlong = con.connection.define('latlong_details_tables', {
     lat: {
-        type: DataTypes.DOUBLE,
+        type: con.datatypes.DOUBLE,
         allowNull: false
     },
     lon: {
-        type: DataTypes.DOUBLE
+        type: con.datatypes.DOUBLE
     },
     location: {
-        type: DataTypes.STRING
+        type: con.datatypes.STRING
     }
 }, {
     getterMethods : {
